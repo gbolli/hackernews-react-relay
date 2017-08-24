@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 34ee548d5509ee056398e13c42ab6dd2
+ * @relayHash a5658966c9f99259c8f7e33bb80c165a
  */
 
 /* eslint-disable */
@@ -29,20 +29,13 @@ fragment LinkList_viewer on Viewer {
       node {
         ...Link_link
         id
+        __typename
       }
+      cursor
     }
-    ... on LinkConnection {
-      edges {
-        cursor
-        node {
-          __typename
-          id
-        }
-      }
-      pageInfo {
-        hasPreviousPage
-        startCursor
-      }
+    pageInfo {
+      hasPreviousPage
+      startCursor
     }
   }
 }
@@ -154,97 +147,63 @@ const batch /*: ConcreteBatch*/ = {
                             "storageKey": null
                           },
                           {
-                            "kind": "InlineFragment",
-                            "type": "Link",
-                            "selections": [
-                              {
-                                "kind": "ScalarField",
-                                "alias": null,
-                                "args": null,
-                                "name": "description",
-                                "storageKey": null
-                              },
-                              {
-                                "kind": "ScalarField",
-                                "alias": null,
-                                "args": null,
-                                "name": "url",
-                                "storageKey": null
-                              }
-                            ]
-                          }
-                        ],
-                        "storageKey": null
-                      }
-                    ],
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "InlineFragment",
-                    "type": "LinkConnection",
-                    "selections": [
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "args": null,
-                        "concreteType": "LinkEdge",
-                        "name": "edges",
-                        "plural": true,
-                        "selections": [
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "description",
+                            "storageKey": null
+                          },
                           {
                             "kind": "ScalarField",
                             "alias": null,
                             "args": null,
-                            "name": "cursor",
+                            "name": "url",
                             "storageKey": null
                           },
                           {
-                            "kind": "LinkedField",
+                            "kind": "ScalarField",
                             "alias": null,
                             "args": null,
-                            "concreteType": "Link",
-                            "name": "node",
-                            "plural": false,
-                            "selections": [
-                              {
-                                "kind": "ScalarField",
-                                "alias": null,
-                                "args": null,
-                                "name": "__typename",
-                                "storageKey": null
-                              }
-                            ],
+                            "name": "__typename",
                             "storageKey": null
                           }
                         ],
                         "storageKey": null
                       },
                       {
-                        "kind": "LinkedField",
+                        "kind": "ScalarField",
                         "alias": null,
                         "args": null,
-                        "concreteType": "PageInfo",
-                        "name": "pageInfo",
-                        "plural": false,
-                        "selections": [
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "args": null,
-                            "name": "hasPreviousPage",
-                            "storageKey": null
-                          },
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "args": null,
-                            "name": "startCursor",
-                            "storageKey": null
-                          }
-                        ],
+                        "name": "cursor",
                         "storageKey": null
                       }
-                    ]
+                    ],
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "PageInfo",
+                    "name": "pageInfo",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "hasPreviousPage",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "startCursor",
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
                   }
                 ],
                 "storageKey": "allLinks{\"last\":100,\"orderBy\":\"createdAt_DESC\"}"
@@ -278,7 +237,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query LinkListPageQuery {\n  viewer {\n    ...LinkList_viewer\n    id\n  }\n}\n\nfragment LinkList_viewer on Viewer {\n  allLinks(last: 100, orderBy: createdAt_DESC) {\n    edges {\n      node {\n        ...Link_link\n        id\n      }\n    }\n    ... on LinkConnection {\n      edges {\n        cursor\n        node {\n          __typename\n          id\n        }\n      }\n      pageInfo {\n        hasPreviousPage\n        startCursor\n      }\n    }\n  }\n}\n\nfragment Link_link on Link {\n  id\n  description\n  url\n}\n"
+  "text": "query LinkListPageQuery {\n  viewer {\n    ...LinkList_viewer\n    id\n  }\n}\n\nfragment LinkList_viewer on Viewer {\n  allLinks(last: 100, orderBy: createdAt_DESC) {\n    edges {\n      node {\n        ...Link_link\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Link_link on Link {\n  id\n  description\n  url\n}\n"
 };
 
 module.exports = batch;
