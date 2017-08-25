@@ -13,20 +13,35 @@ export type LinkList_viewer = {|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{| |};
     |}>;
+    +pageInfo: ?{|
+      +hasNextPage: ?boolean;
+      +endCursor: ?string;
+    |};
   |};
 |};
 */
 
 
 const fragment /*: ConcreteFragment*/ = {
-  "argumentDefinitions": [],
+  "argumentDefinitions": [
+    {
+      "kind": "RootArgument",
+      "name": "count",
+      "type": "Int"
+    },
+    {
+      "kind": "RootArgument",
+      "name": "after",
+      "type": "String"
+    }
+  ],
   "kind": "Fragment",
   "metadata": {
     "connection": [
       {
-        "count": null,
-        "cursor": null,
-        "direction": "backward",
+        "count": "count",
+        "cursor": "after",
+        "direction": "forward",
         "path": [
           "allLinks"
         ]
@@ -38,7 +53,14 @@ const fragment /*: ConcreteFragment*/ = {
     {
       "kind": "LinkedField",
       "alias": "allLinks",
-      "args": null,
+      "args": [
+        {
+          "kind": "Literal",
+          "name": "orderBy",
+          "value": "createdAt_DESC",
+          "type": "LinkOrderBy"
+        }
+      ],
       "concreteType": "LinkConnection",
       "name": "__LinkList_allLinks_connection",
       "plural": false,
@@ -96,21 +118,21 @@ const fragment /*: ConcreteFragment*/ = {
               "kind": "ScalarField",
               "alias": null,
               "args": null,
-              "name": "hasPreviousPage",
+              "name": "hasNextPage",
               "storageKey": null
             },
             {
               "kind": "ScalarField",
               "alias": null,
               "args": null,
-              "name": "startCursor",
+              "name": "endCursor",
               "storageKey": null
             }
           ],
           "storageKey": null
         }
       ],
-      "storageKey": null
+      "storageKey": "__LinkList_allLinks_connection{\"orderBy\":\"createdAt_DESC\"}"
     }
   ],
   "type": "Viewer"

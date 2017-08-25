@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3fbaf34db0ab1e0645d9a59e26b2a362
+ * @relayHash d1e3007dd8be30bc2ab0f2bb257e0ecf
  */
 
 /* eslint-disable */
@@ -9,14 +9,14 @@
 
 /*::
 import type {ConcreteBatch} from 'relay-runtime';
-export type LinkListPageQueryResponse = {|
+export type LinkListForwardQueryResponse = {|
   +viewer: {| |};
 |};
 */
 
 
 /*
-query LinkListPageQuery(
+query LinkListForwardQuery(
   $count: Int!
   $after: String
 ) {
@@ -76,7 +76,7 @@ const batch /*: ConcreteBatch*/ = {
     ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "LinkListPageQuery",
+    "name": "LinkListForwardQuery",
     "selections": [
       {
         "kind": "LinkedField",
@@ -100,7 +100,7 @@ const batch /*: ConcreteBatch*/ = {
   "id": null,
   "kind": "Batch",
   "metadata": {},
-  "name": "LinkListPageQuery",
+  "name": "LinkListForwardQuery",
   "query": {
     "argumentDefinitions": [
       {
@@ -117,7 +117,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ],
     "kind": "Root",
-    "name": "LinkListPageQuery",
+    "name": "LinkListForwardQuery",
     "operation": "query",
     "selections": [
       {
@@ -338,7 +338,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query LinkListPageQuery(\n  $count: Int!\n  $after: String\n) {\n  viewer {\n    ...LinkList_viewer\n    id\n  }\n}\n\nfragment LinkList_viewer on Viewer {\n  allLinks(first: $count, after: $after, orderBy: createdAt_DESC) {\n    edges {\n      node {\n        ...Link_link\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment Link_link on Link {\n  id\n  description\n  url\n  createdAt\n  postedBy {\n    id\n    name\n  }\n  votes {\n    count\n  }\n}\n"
+  "text": "query LinkListForwardQuery(\n  $count: Int!\n  $after: String\n) {\n  viewer {\n    ...LinkList_viewer\n    id\n  }\n}\n\nfragment LinkList_viewer on Viewer {\n  allLinks(first: $count, after: $after, orderBy: createdAt_DESC) {\n    edges {\n      node {\n        ...Link_link\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment Link_link on Link {\n  id\n  description\n  url\n  createdAt\n  postedBy {\n    id\n    name\n  }\n  votes {\n    count\n  }\n}\n"
 };
 
 module.exports = batch;
